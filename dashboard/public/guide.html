@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gold Rush Dashboard Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: #0A0A0A;
+      color: #e0e0e0;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    h1 {
+      color: #00FF41;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      color: #00FF41;
+      font-size: 1.1rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #222;
+    }
+    h3 {
+      color: #00cc33;
+      font-size: 0.95rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #888;
+      font-size: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    p { margin-bottom: 1rem; font-size: 0.85rem; }
+    ol, ul {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      font-size: 0.85rem;
+    }
+    li { margin-bottom: 0.5rem; }
+    strong { color: #e0e0e0; }
+    .highlight { color: #00FF41; }
+    .gold { color: #FFD700; }
+    .silver { color: #C0C0C0; }
+    .bronze { color: #CD7F32; }
+    .dim { color: #888; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.5rem;
+      font-size: 0.8rem;
+    }
+    th {
+      text-align: left;
+      color: #00FF41;
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid #333;
+    }
+    td {
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .card {
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      background: #111;
+    }
+    .card-label {
+      color: #00cc33;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #00FF41;
+      text-decoration: none;
+      font-size: 0.8rem;
+      border: 1px solid #222;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+    .back-link:hover { border-color: #00cc33; }
+    code {
+      background: #1a1a1a;
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      color: #00cc33;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>GOLD RUSH DASHBOARD</h1>
+  <p class="subtitle">Usage guide // jobhunt.daitiq.com</p>
+
+  <h2>How It Works</h2>
+  <p>Gold Rush runs automatically <strong>twice a day</strong> (8am and 7pm). It scrapes jobs from JSearch API, LinkedIn email alerts, and Hacker News, then scores each job 0–100 and classifies it into a tier. After each run, the dashboard at <code>jobhunt.daitiq.com</code> updates automatically with the latest results.</p>
+
+  <h2>Daily Workflow</h2>
+
+  <h3>Morning (after 8am run)</h3>
+  <ol>
+    <li>Open <code>jobhunt.daitiq.com</code> on your phone or laptop</li>
+    <li>Filter to <span class="gold">Gold</span> tier — these are your best matches</li>
+    <li>Click <strong>Apply</strong> on any Gold jobs that look good — opens the posting in a new tab</li>
+    <li>Check the <strong>applied checkbox</strong> after you submit so you don't revisit them</li>
+    <li>Glance at <span class="silver">Silver</span> if you have time — decent but less aligned</li>
+  </ol>
+
+  <h3>Evening (after 7pm run)</h3>
+  <ol>
+    <li>Same routine — check for new jobs that came in during the day</li>
+    <li>Use the <strong>"today"</strong> date filter to see only fresh ones</li>
+  </ol>
+
+  <h2>What the Tiers Mean</h2>
+  <table>
+    <tr>
+      <th>Tier</th>
+      <th>Score</th>
+      <th>What to Do</th>
+    </tr>
+    <tr>
+      <td><span class="gold">Gold</span></td>
+      <td>70–84</td>
+      <td>Apply immediately — strong title + salary + freshness match</td>
+    </tr>
+    <tr>
+      <td><span class="silver">Silver</span></td>
+      <td>50–69</td>
+      <td>Apply if interesting — partial match, maybe wrong location or lower salary</td>
+    </tr>
+    <tr>
+      <td><span class="bronze">Bronze</span></td>
+      <td>&lt;50</td>
+      <td>Skip unless something catches your eye</td>
+    </tr>
+  </table>
+
+  <h2>How Scores Are Calculated</h2>
+  <table>
+    <tr><th>Factor</th><th>Max Pts</th><th>What It Measures</th></tr>
+    <tr><td>Title match</td><td>35</td><td>"Business Data Analyst" = 35, "Data Analyst" = 30, "Analyst" = 18–24</td></tr>
+    <tr><td>Salary</td><td>25</td><td>$180k+ = 25pts, $150k+ = 22, $120k+ = 18, $100k+ = 14</td></tr>
+    <tr><td>Freshness</td><td>15</td><td>&lt;6 hrs = 15pts, &lt;12hrs = 12, &lt;24hrs = 9</td></tr>
+    <tr><td>Company</td><td>10</td><td>Preferred companies (Stripe, Anthropic, etc.) = 10pts</td></tr>
+    <tr><td>Location</td><td>10</td><td>Remote or Bay Area = 10pts, SF metro = 8, CA = 6</td></tr>
+    <tr><td>Seniority</td><td>5</td><td>Senior/Lead/Staff bonus, entry-level penalty</td></tr>
+  </table>
+
+  <h2>Filters &amp; Controls</h2>
+
+  <div class="card">
+    <div class="card-label">Recommended filters</div>
+    <ul>
+      <li><strong>Tier buttons</strong> — Click <span class="gold">Gold</span> to show only top-tier jobs</li>
+      <li><strong>"today" date range</strong> — Skip stale listings, focus on fresh ones</li>
+      <li><strong>"Hide applied" checkbox</strong> — Toggle on to avoid re-reviewing jobs</li>
+      <li><strong>Search box</strong> — Type a company name or keyword to narrow results</li>
+      <li><strong>Sort</strong> — Default is by score; switch to "date" to see newest first</li>
+    </ul>
+  </div>
+
+  <h2>Application Tracker</h2>
+  <p>Every time you check the applied checkbox on a job, the <strong>date you marked it</strong> is recorded. You can review all your applications on the Tracker page.</p>
+
+  <div class="card">
+    <div class="card-label">How to use</div>
+    <ul>
+      <li>Click <strong>"Applied: N →"</strong> in the stats bar to open the Tracker</li>
+      <li>Applications are <strong>grouped by date</strong>, newest first</li>
+      <li>Click the <strong>✕</strong> on any entry to un-mark it as applied</li>
+      <li>Click <strong>"← Dashboard"</strong> to go back</li>
+    </ul>
+  </div>
+
+  <h2>Application Aging</h2>
+  <p>Applications automatically change color based on how long ago you applied. This keeps your tracker clean and honest — no dead opportunities cluttering the view.</p>
+
+  <table>
+    <tr>
+      <th>Status</th>
+      <th>Days</th>
+      <th>Visual</th>
+      <th>What It Means</th>
+    </tr>
+    <tr>
+      <td style="color: #00cc33;">Active</td>
+      <td>0–13</td>
+      <td>Green border</td>
+      <td>Still in play — waiting to hear back</td>
+    </tr>
+    <tr>
+      <td style="color: #eab308;">Stale</td>
+      <td>14–20</td>
+      <td>Yellow border + day badge</td>
+      <td>Probably ghosted — follow up or let go</td>
+    </tr>
+    <tr>
+      <td style="color: #ef4444;">Cold</td>
+      <td>21+</td>
+      <td>Red border + day badge</td>
+      <td>Dead — moved to Cold section at bottom</td>
+    </tr>
+  </table>
+
+  <div class="card">
+    <div class="card-label">Keeping it clean</div>
+    <ul>
+      <li>Cold jobs (21d+) appear in a separate <strong>"Cold — No Response"</strong> section at the bottom of the tracker</li>
+      <li>Each cold job has an <strong>Archive</strong> button to dismiss it individually</li>
+      <li>Use the <strong>"Archive all cold jobs"</strong> button to bulk-clear everything 21+ days old in one tap</li>
+      <li>Archived cold jobs go to the Dismissed page under the <strong>"No Response"</strong> category</li>
+    </ul>
+  </div>
+
+  <h2>Dismissing Jobs</h2>
+  <p>If a job is irrelevant, fake, or no longer available, you can dismiss it to remove it from the main dashboard.</p>
+
+  <div class="card">
+    <div class="card-label">How to dismiss</div>
+    <ol>
+      <li>Click the <strong>✕ button</strong> on any job row</li>
+      <li>A modal asks <strong>why</strong> you are removing it:</li>
+    </ol>
+    <table>
+      <tr><th>Reason</th><th>When to use</th></tr>
+      <tr><td>No longer available</td><td>Job listing has been taken down or filled</td></tr>
+      <tr><td>Fake job</td><td>Scam posting, fake company, or recruiter bait</td></tr>
+      <tr><td>Not relevant</td><td>Wrong role, wrong industry, or bad title match</td></tr>
+      <tr><td>Just didn't like</td><td>Something about it turned you off</td></tr>
+      <tr><td>Other</td><td>Custom reason — type your own note</td></tr>
+    </table>
+    <p>After selecting a reason, click <strong>Remove</strong> to confirm. The job disappears from the dashboard.</p>
+  </div>
+
+  <h2>Dismissed Jobs Page</h2>
+  <p>All dismissed jobs are tracked and reviewable.</p>
+
+  <div class="card">
+    <div class="card-label">How to review</div>
+    <ul>
+      <li>Click <strong>"Dismissed: N →"</strong> in the stats bar (appears after you dismiss at least one job)</li>
+      <li>Jobs are <strong>grouped by reason</strong> (Fake Job, No Longer Available, Not Relevant, etc.)</li>
+      <li>Each entry shows the job details, dismiss date, and any custom note</li>
+      <li>Click the <strong>↩ button</strong> to restore a job back to the main dashboard</li>
+    </ul>
+  </div>
+
+  <h2>Data Storage</h2>
+  <div class="card">
+    <div class="card-label">Important</div>
+    <ul>
+      <li>Applied status, dismiss reasons, and dates are all saved in your <strong>browser's localStorage</strong></li>
+      <li>Use the <strong>same device and browser</strong> consistently to keep your data intact</li>
+      <li>Clearing browser data will erase your applied/dismissed history</li>
+      <li>Job data (titles, scores, companies) comes from <code>jobs.json</code> which updates automatically with each Gold Rush run</li>
+    </ul>
+  </div>
+
+  <h2>Tips</h2>
+  <ul>
+    <li>The dashboard refreshes automatically with each Gold Rush run — no action needed from you</li>
+    <li>On mobile, tap the job title itself to open the posting (the Apply button is hidden on small screens)</li>
+    <li>The stats bar at the top shows how many Gold/Silver/Bronze jobs are in the system and when the last run happened</li>
+    <li>Source labels: <span class="dim">JSearch</span> = API scrape, <span class="dim">LinkedIn</span> = email alerts, <span class="dim">HN</span> = Hacker News</li>
+  </ul>
+
+  <h2>Weekly Game Plan</h2>
+  <div class="card">
+    <div class="card-label">This week's targets</div>
+    <ol>
+      <li>Check dashboard <strong>2x daily</strong> (morning + evening)</li>
+      <li>Apply to <strong>every Gold job</strong> that's a real match — aim for 2–5 applications per day</li>
+      <li>Scan Silver for <strong>standout companies</strong> (Stripe, Anthropic, Snowflake, etc.)</li>
+      <li>Use the applied checkbox religiously so you can track your pipeline</li>
+      <li>By end of week, you should have 10–20+ applications submitted</li>
+    </ol>
+  </div>
+
+  <a href="/" class="back-link">← Back to Dashboard</a>
+
+</body>
+</html>

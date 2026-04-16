@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Rush Setup Guide - Your Competitive Edge in Job Searching</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 4px solid #007bff;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .header .tagline {
+            font-size: 1.1em;
+            color: #007bff;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .meta-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 5px solid #28a745;
+        }
+
+        .meta-info p {
+            margin: 8px 0;
+        }
+
+        .meta-info strong {
+            color: #28a745;
+        }
+
+        h2 {
+            color: #007bff;
+            font-size: 1.8em;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            color: #333;
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            page-break-after: avoid;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 15px 0;
+        }
+
+        .alert {
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border-left: 5px solid;
+            page-break-inside: avoid;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .step-box {
+            background: white;
+            border: 3px solid #007bff;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            page-break-inside: avoid;
+        }
+
+        .step-box .step-number {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+        .step-box .step-title {
+            display: inline-block;
+            font-size: 1.5em;
+            color: #007bff;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        .step-box .step-time {
+            display: inline-block;
+            background: #ffc107;
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-left: 15px;
+            vertical-align: middle;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+            page-break-inside: avoid;
+        }
+
+        .inline-code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #c7254e;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            margin: 8px 0;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+            position: relative;
+            padding-left: 45px;
+        }
+
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 15px;
+            font-size: 1.3em;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            page-break-inside: avoid;
+        }
+
+        .example-box h4 {
+            color: #17a2b8;
+            margin-top: 0;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            page-break-inside: avoid;
+        }
+
+        .highlight-box strong {
+            color: #856404;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .step-box {
+                border: 2px solid #007bff;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            .alert, .step-box, .code-block, .example-box {
+                page-break-inside: avoid;
+            }
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .toc ol {
+            margin-left: 25px;
+        }
+
+        .toc li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gold Rush Setup Guide</h1>
+            <p class="subtitle">Automated Golden Job Finder</p>
+            <p class="tagline">Find fresh, high-paying jobs before 200+ people apply</p>
+        </div>
+
+        <div class="meta-info">
+            <p><strong>Total Time:</strong> 30 minutes</p>
+            <p><strong>Difficulty:</strong> Easy (copy/paste commands)</p>
+            <p><strong>Result:</strong> Automatic emails with 5-10 golden jobs every morning</p>
+            <p><strong>Competitive Edge:</strong> Be in the first 20 applicants, not the 200th</p>
+        </div>
+
+        <div class="alert alert-danger">
+            <h4 style="margin-top: 0;">The Problem You're Solving</h4>
+            <p>By the time you see a job on LinkedIn, <strong>150+ people have already applied</strong>. Your resume gets buried. You're competing against hundreds.</p>
+            <p><strong>Gold Rush changes this.</strong> You see jobs within hours of posting. You apply early. You get interviews.</p>
+        </div>
+
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+                <li>What You're Building (Overview)</li>
+                <li>Prerequisites Check</li>
+                <li>Step 1: Install Dependencies (5 min)</li>
+                <li>Step 2: Get Gmail App Password (10 min)</li>
+                <li>Step 3: Configure Settings (5 min)</li>
+                <li>Step 4: Set Up Job Alerts (10 min)</li>
+                <li>Step 5: Test the Script (2 min)</li>
+                <li>Step 6: Schedule Automatic Runs (5 min)</li>
+                <li>Step 7: Verify Everything Works (2 min)</li>
+                <li>What Happens Next</li>
+                <li>Troubleshooting</li>
+            </ol>
+        </div>
+
+        <h2>1. What You're Building</h2>
+
+        <p>Gold Rush is an automated job finder that:</p>
+
+        <ul>
+            <li><strong>Monitors two sources 24/7:</strong>
+                <ul>
+                    <li>Your Gmail job alerts (LinkedIn, Indeed, Glassdoor)</li>
+                    <li>JSearch API (aggregates LinkedIn, Indeed, Glassdoor, ZipRecruiter)</li>
+                </ul>
+            </li>
+            <li><strong>Finds jobs posted in last 24 hours</strong></li>
+            <li><strong>Scores each job 0-100</strong> based on:
+                <ul>
+                    <li>Title match (40 pts) - "Technical Product Manager" = perfect match</li>
+                    <li>Salary (25 pts) - $150k+ = high score</li>
+                    <li>Freshness (20 pts) - Posted <6 hours = maximum points</li>
+                    <li>Company quality (15 pts) - Stripe, Figma, Notion = top tier</li>
+                </ul>
+            </li>
+            <li><strong>Emails you 5-10 "golden jobs"</strong> every morning at 7am</li>
+            <li><strong>Stores everything in local database</strong> (no cloud, you own the data)</li>
+        </ul>
+
+        <div class="example-box">
+            <h4>Example: What You'll Receive Every Morning</h4>
+            <p><strong>Email Subject:</strong> 🥇 5 Golden Jobs Found - February 7, 2026</p>
+            <p><strong>Email Content:</strong></p>
+            <ul>
+                <li><strong>🥇 Platinum Jobs (90+ score):</strong> Technical Product Manager @ Figma - $165k-$220k - Posted 4 hours ago</li>
+                <li><strong>🥈 Gold Jobs (75-89 score):</strong> Product Manager, Analytics @ Notion - $150k-$200k - Posted 11 hours ago</li>
+                <li>Direct "Apply Now" buttons for each job</li>
+                <li>Why each job is golden (exact match, fresh, great company)</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-success">
+            <h4 style="margin-top: 0;">The Competitive Edge</h4>
+            <p><strong>Without Gold Rush:</strong> You search at 6pm → Job posted at 9am → 150 people already applied → You're buried</p>
+            <p><strong>With Gold Rush:</strong> Job posted at 9am → Script finds it at 7pm → You apply at 7:10pm → You're applicant #15-30</p>
+            <p><strong>Result:</strong> Being in first 30 applicants increases callback rate by 5-10x</p>
+        </div>
+
+        <h2>2. Prerequisites Check</h2>
+
+        <ul class="checklist">
+            <li>Mac running macOS (for launchd scheduling)</li>
+            <li>Python 3.10+ installed (check: <span class="inline-code">python3 --version</span>)</li>
+            <li>Gmail account</li>
+            <li>JSearch API key (you already have this from Job Tracking Dashboard)</li>
+            <li>30 minutes of uninterrupted time</li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <h2>3. Setup Steps</h2>
+
+        <!-- STEP 1 -->
+        <div class="step-box">
+            <div>
+                <span class="step-number">1</span>
+                <span class="step-title">Install Dependencies</span>
+                <span class="step-time">5 minutes</span>
+            </div>
+
+            <h4 style="margin-top: 25px;">What you're doing:</h4>
+            <p>Installing Python packages that Gold Rush needs to work.</p>
+
+            <h4>Commands to run:</h4>
+            <div class="code-block">cd "$HOME/Job Searching"
+
+pip3 install requests beautifulsoup4 python-dotenv</div>
+
+            <h4>Expected output:</h4>
+            <p>You'll see "Successfully installed..." messages for each package.</p>
+
+            <div class="alert alert-info" style="margin-top: 20px;">
+                <strong>Tip:</strong> If you get "command not found: pip3", try <span class="inline-code">pip</span> instead of <span class="inline-code">pip3</span>.
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step-box">
+            <div>
+                <span class="step-number">2</span>
+                <span class="step-title">Get Gmail App Password</span>
+                <span class="step-time">10 minutes</span>
+            </div>
+
+            <h4 style="margin-top: 25px;">Why you need this:</h4>
+            <p>Google doesn't allow apps to use your regular Gmail password for security. You need to generate a special "app password" that Gold Rush will use to read your job alert emails and send you digests.</p>
+
+            <h4>Steps:</h4>
+            <ol>
+                <li>Go to <a href="https://myaccount.google.com/apppasswords" target="_blank">myaccount.google.com/apppasswords</a></li>
+
+                <li><strong>If you don't have 2-Factor Authentication enabled:</strong>
+                    <ul>
+                        <li>You'll need to enable it first</li>
+                        <li>Go to <a href="https://myaccount.google.com/security" target="_blank">myaccount.google.com/security</a></li>
+                        <li>Click "2-Step Verification" → Follow the setup</li>
+                        <li>Use your phone number (easiest method)</li>
+                    </ul>
+                </li>
+
+                <li><strong>Once 2FA is enabled:</strong>
+                    <ul>
+                        <li>Go back to <a href="https://myaccount.google.com/apppasswords" target="_blank">App Passwords page</a></li>
+                        <li>Under "Select app" → Choose <strong>Mail</strong></li>
+                        <li>Under "Select device" → Choose <strong>Mac</strong></li>
+                        <li>Click <strong>Generate</strong></li>
+                    </ul>
+                </li>
+
+                <li><strong>Copy the 16-character password</strong>
+                    <ul>
+                        <li>Format looks like: <span class="inline-code">xxxx xxxx xxxx xxxx</span></li>
+                        <li><strong>SAVE THIS</strong> - you'll paste it in Step 3</li>
+                        <li>You won't be able to see it again after closing this window</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="highlight-box">
+                <p><strong>Important:</strong> This is NOT your regular Gmail password. This is a special app-specific password that only Gold Rush will use. Google generates it specifically for this purpose.</p>
+            </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step-box">
+            <div>
+                <span class="step-number">3</span>
+                <span class="step-title">Configure Settings</span>
+                <span class="step-time">5 minutes</span>
+            </div>
+
+            <h4 style="margin-top: 25px;">What you're doing:</h4>
+            <p>Creating a configuration file with your email, API key, and job search preferences.</p>
+
+            <h4>Commands to run:</h4>
+            <div class="code-block">cd "$HOME/Job Searching"
+
+touch config.env
+
+open -a TextEdit config.env</div>
+
+            <h4>Paste this into the file and fill in YOUR details:</h4>
+            <div class="code-block"># Email Settings
+EMAIL_ADDRESS=your.email@gmail.com
+EMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx  # From Step 2
+
+# JSearch API (copy from Job Tracking Dashboard)
+JSEARCH_API_KEY=your_rapidapi_key_here
+JSEARCH_API_HOST=jsearch.p.rapidapi.com
+
+# Job Search Preferences
+TARGET_TITLES=Technical Product Manager,Product Manager - Data,Product Manager - Analytics,Senior Product Analyst,Data Product Manager
+TARGET_LOCATIONS=San Francisco,Remote,Bay Area,Palo Alto,Mountain View
+MIN_SALARY=100000
+PREFERRED_SALARY=120000
+
+# Notification Settings
+SEND_DAILY_DIGEST=true
+SEND_IMMEDIATE_PLATINUM=true
+DIGEST_TIME=07:00
+
+# API Usage Limits
+MAX_JSEARCH_CALLS_PER_DAY=6
+ENABLE_EMAIL_PARSING=true
+
+# Company Preferences
+PREFERRED_COMPANIES=Stripe,Figma,Notion,Databricks,Snowflake,Retool,Airtable,Linear,Vercel,Ramp,Plaid
+AVOID_COMPANIES=</div>
+
+            <h4>How to get your JSearch API key:</h4>
+            <p>Open Terminal and run:</p>
+            <div class="code-block">cd "$HOME/Job Tracking Dashboard"
+
+cat .env | grep JSEARCH</div>
+
+            <p>Copy the value after <span class="inline-code">VITE_JSEARCH_API_KEY=</span> and paste it into Gold Rush's <span class="inline-code">config.env</span></p>
+
+            <div class="alert alert-warning">
+                <strong>Important:</strong> Save and close the file when you're done. Make sure there are no typos in your email or API key.
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- STEP 4 -->
+        <div class="step-box">
+            <div>
+                <span class="step-number">4</span>
+                <span class="step-title">Set Up Job Alerts</span>
+                <span class="step-time">10 minutes</span>
+            </div>
+
+            <h4 style="margin-top: 25px;">Why you need this:</h4>
+            <p>LinkedIn and Indeed will email you when new jobs are posted. Gold Rush reads these emails and parses the jobs automatically. This gives you fresh jobs without hitting API rate limits.</p>
+
+            <h3 style="color: #0077b5; margin-top: 30px;">LinkedIn Job Alerts</h3>
+            <ol>
+                <li>Go to <a href="https://linkedin.com/jobs" target="_blank">linkedin.com/jobs</a></li>
+
+                <li><strong>Create Alert #1:</strong>
+                    <ul>
+                        <li>Search: "Technical Product Manager"</li>
+                        <li>Location: "San Francisco, CA"</li>
+                        <li>Click the bell icon ("Set Alert")</li>
+                        <li>Frequency: <strong>Daily</strong></li>
+                    </ul>
+                </li>
+
+                <li><strong>Create Alert #2:</strong>
+                    <ul>
+                        <li>Search: "Product Manager Data"</li>
+                        <li>Location: "Remote"</li>
+                        <li>Set alert → Daily</li>
+                    </ul>
+                </li>
+
+                <li><strong>Create Alert #3:</strong>
+                    <ul>
+                        <li>Search: "Senior Product Analyst"</li>
+                        <li>Location: "San Francisco, CA"</li>
+                        <li>Set alert → Daily</li>
+                    </ul>
+                </li>
+
+                <li><strong>Create Alert #4:</strong>
+                    <ul>
+                        <li>Search: "Product Manager Analytics"</li>
+                        <li>Location: "Remote"</li>
+                        <li>Set alert → Daily</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3 style="color: #2164f3; margin-top: 30px;">Indeed Job Alerts</h3>
+            <ol>
+                <li>Go to <a href="https://indeed.com" target="_blank">indeed.com</a></li>
+
+                <li><strong>Create Alert #1:</strong>
+                    <ul>
+                        <li>Search: "Technical Product Manager"</li>
+                        <li>Location: "San Francisco, CA"</li>
+                        <li>Click "Email me jobs like these"</li>
+                        <li>Frequency: <strong>Daily</strong></li>
+                    </ul>
+                </li>
+
+                <li><strong>Create Alert #2:</strong>
+                    <ul>
+                        <li>Search: "Product Manager Data"</li>
+                        <li>Location: "Remote"</li>
+                        <li>Email alert → Daily</li>
+                    </ul>
+                </li>
+
+                <li><strong>Create Alert #3:</strong>
+                    <ul>
+                        <li>Search: "Senior Product Analyst"</li>
+                        <li>Location: "Bay Area, CA"</li>
+                        <li>Email alert → Daily</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="highlight-box">
+                <p><strong>Critical:</strong> Use the SAME email address you put in <span class="inline-code">config.env</span> (Step 3). Gold Rush will read job alerts sent to this address.</p>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- STEP 5 -->
+        <div class="step-box">
+            <div>
+                <span class="step-number">5</span>
+                <span class="step-title">Test the Script</span>
+                <span class="step-time">2 minutes</span>
+            </div>
+
+            <h4 style="margin-top: 25px;">What you're doing:</h4>
+            <p>Running Gold Rush manually once to make sure everything works before scheduling it.</p>
+
+            <h4>Command to run:</h4>
+            <div class="code-block">cd "$HOME/Job Searching"
+
+python3 gold_rush.py</div>
+
+            <h4>Expected output:</h4>
+            <div class="code-block">============================================================
+Gold Rush starting...
+============================================================
+INFO - Database initialized successfully
+INFO - Found 0 job alert emails to parse
+INFO - JSearch API call: Technical Product Manager in San Francisco
+INFO - JSearch API returned 10 jobs
+INFO - Total jobs from JSearch API: 25
+INFO - Processed 25 new jobs, 0 duplicates
+INFO - Email sent: 🥇 5 Golden Jobs Found
+============================================================
+Gold Rush completed successfully
+Stats: {'total_found': 25, 'new_jobs': 25, ...}
+============================================================</div>
+
+            <h4>Check your email!</h4>
+            <p>You should have received an email with the subject: <strong>"🥇 5 Golden Jobs Found - February 7, 2026"</strong></p>
+
+            <p>Open it and see what golden jobs were found. This is what you'll get every morning.</p>
+
+            <div class="alert alert-danger">
+                <h4 style="margin-top: 0;">If you get errors:</h4>
+                <ul>
+                    <li><strong>Gmail login error:</strong> Check your app password in <span class="inline-code">config.env</span> (Step 3)</li>
+                    <li><strong>API error:</strong> Check your JSearch API key is correct</li>
+                    <li><strong>Missing dependencies:</strong> Re-run <span class="inline-code">pip3 install</span> from Step 1</li>
+                    <li><strong>Check logs:</strong> <span class="inline-code">cat logs/errors.log</span> for detailed error messages</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- STEP 6 -->
+        <div class="step-box">
+            <div>
+                <span class="step-number">6</span>
+                <span class="step-title">Schedule Automatic Runs</span>
+                <span class="step-time">5 minutes</span>
+            </div>
+
+            <h4 style="margin-top: 25px;">What you're doing:</h4>
+            <p>Setting up macOS to run Gold Rush automatically at 7:00 AM and 7:00 PM every day. You'll wake up to golden jobs in your inbox without having to do anything.</p>
+
+            <h4>Create the scheduler file:</h4>
+            <div class="code-block">cd "$HOME/Job Searching"
+
+touch com.yourname.gold_rush.plist
+
+open -a TextEdit com.yourname.gold_rush.plist</div>
+
+            <h4>Paste this into the file:</h4>
+            <div class="code-block">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;com.yourname.gold_rush&lt;/string&gt;
+
+    &lt;key&gt;ProgramArguments&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/usr/bin/python3&lt;/string&gt;
+        &lt;string&gt;$HOME/Job Searching/gold_rush.py&lt;/string&gt;
+    &lt;/array&gt;
+
+    &lt;key&gt;StartCalendarInterval&lt;/key&gt;
+    &lt;array&gt;
+        &lt;dict&gt;
+            &lt;key&gt;Hour&lt;/key&gt;
+            &lt;integer&gt;7&lt;/integer&gt;
+            &lt;key&gt;Minute&lt;/key&gt;
+            &lt;integer&gt;0&lt;/integer&gt;
+        &lt;/dict&gt;
+        &lt;dict&gt;
+            &lt;key&gt;Hour&lt;/key&gt;
+            &lt;integer&gt;19&lt;/integer&gt;
+            &lt;key&gt;Minute&lt;/key&gt;
+            &lt;integer&gt;0&lt;/integer&gt;
+        &lt;/dict&gt;
+    &lt;/array&gt;
+
+    &lt;key&gt;StandardOutPath&lt;/key&gt;
+    &lt;string&gt;$HOME/Job Searching/logs/launchd.out.log&lt;/string&gt;
+
+    &lt;key&gt;StandardErrorPath&lt;/key&gt;
+    &lt;string&gt;$HOME/Job Searching/logs/launchd.err.log&lt;/string&gt;
+
+    &lt;key&gt;WorkingDirectory&lt;/key&gt;
+    &lt;string&gt;$HOME/Job Searching&lt;/string&gt;
+
+    &lt;key&gt;RunAtLoad&lt;/key&gt;
+    &lt;true/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</div>
+
+            <p><strong>Save and close the file.</strong></p>
+
+            <h4>Install the scheduler:</h4>
+            <div class="code-block"># Copy to LaunchAgents folder
+cp com.yourname.gold_rush.plist ~/Library/LaunchAgents/
+
+# Load the job (starts it immediately and schedules future runs)
+launchctl load ~/Library/LaunchAgents/com.yourname.gold_rush.plist
+
+# Verify it's running
+launchctl list | grep gold_rush</div>
+
+            <h4>Expected output:</h4>
+            <p>You should see something like: <span class="inline-code">82756	0	com.yourname.gold_rush</span></p>
+
+            <div class="example-box">
+                <h4>What this scheduler does:</h4>
+                <ul>
+                    <li>Runs Gold Rush at <strong>7:00 AM</strong> every day (morning digest)</li>
+                    <li>Runs Gold Rush at <strong>7:00 PM</strong> every day (evening update)</li>
+                    <li>Logs all output to <span class="inline-code">logs/</span> folder</li>
+                    <li>Runs automatically - you don't have to do anything</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- STEP 7 -->
+        <div class="step-box">
+            <div>
+                <span class="step-number">7</span>
+                <span class="step-title">Verify Everything Works</span>
+                <span class="step-time">2 minutes</span>
+            </div>
+
+            <h4 style="margin-top: 25px;">Final checks to make sure Gold Rush is running properly.</h4>
+
+            <h4>Check the logs:</h4>
+            <div class="code-block">cd "$HOME/Job Searching"
+
+# View recent activity
+tail -20 logs/gold_rush.log
+
+# Check for errors
+tail -20 logs/errors.log</div>
+
+            <h4>Check the database:</h4>
+            <div class="code-block">sqlite3 gold_rush.db "SELECT COUNT(*) FROM jobs"</div>
+
+            <p>Should show the number of jobs found (e.g., <span class="inline-code">25</span>)</p>
+
+            <h4>Check your email:</h4>
+            <ul class="checklist">
+                <li>You should have received the daily digest email</li>
+                <li>If it went to spam, mark as "Not Spam"</li>
+                <li>Create a filter: From your email address → Never send to spam</li>
+            </ul>
+
+            <h4>Check the scheduler:</h4>
+            <div class="code-block">launchctl list | grep gold_rush</div>
+
+            <p>Should show the job is loaded and running.</p>
+
+            <div class="alert alert-success">
+                <h4 style="margin-top: 0;">✅ Setup Complete!</h4>
+                <p>Gold Rush is now running automatically. Tomorrow morning at 7:00 AM, you'll receive your first automated daily digest with fresh golden jobs.</p>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2>4. What Happens Next</h2>
+
+        <h3>Tomorrow Morning (7:00 AM)</h3>
+        <p>Gold Rush runs automatically:</p>
+        <ol>
+            <li>Checks your Gmail for LinkedIn/Indeed job alerts from overnight</li>
+            <li>Parses job details from emails</li>
+            <li>Makes 6 JSearch API calls to supplement</li>
+            <li>Finds 20-30 total jobs</li>
+            <li>Deduplicates (removes jobs already in database)</li>
+            <li>Scores each job (0-100 based on title, salary, freshness, company)</li>
+            <li>Filters: Only keeps jobs posted in last 24 hours</li>
+            <li>Emails you the top 5-10 "golden" jobs</li>
+        </ol>
+
+        <h3>Your Daily Workflow</h3>
+        <table>
+            <tr>
+                <th>Time</th>
+                <th>Action</th>
+                <th>Duration</th>
+            </tr>
+            <tr>
+                <td>7:05 AM</td>
+                <td>Check email for golden jobs</td>
+                <td>2 min</td>
+            </tr>
+            <tr>
+                <td>7:15 AM</td>
+                <td>Apply to top 3 platinum jobs</td>
+                <td>10 min</td>
+            </tr>
+            <tr>
+                <td>7:00 PM</td>
+                <td>Check evening email for new jobs</td>
+                <td>2 min</td>
+            </tr>
+            <tr>
+                <td>Evening</td>
+                <td>Apply to 2-3 more gold jobs</td>
+                <td>10 min</td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Total Daily Time</strong></td>
+                <td><strong>24 min</strong></td>
+            </tr>
+        </table>
+
+        <p><strong>Result:</strong> 5-6 applications per day to fresh, high-quality jobs. 25-30 per week. 100+ per month.</p>
+
+        <h3>Weekly Maintenance (15 minutes)</h3>
+        <ul class="checklist">
+            <li>Review logs: <span class="inline-code">tail -50 logs/gold_rush.log</span></li>
+            <li>Check if goldness scores match your preferences</li>
+            <li>Adjust <span class="inline-code">config.env</span> if needed (add/remove target titles)</li>
+            <li>Update preferred companies list</li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <h2>5. Troubleshooting</h2>
+
+        <div class="alert alert-warning">
+            <h4 style="margin-top: 0;">Problem: No email received</h4>
+            <p><strong>Check if script ran:</strong></p>
+            <div class="code-block">tail -50 logs/gold_rush.log</div>
+            <p><strong>Check if scheduler is loaded:</strong></p>
+            <div class="code-block">launchctl list | grep gold_rush</div>
+            <p><strong>If not loaded, reload it:</strong></p>
+            <div class="code-block">launchctl load ~/Library/LaunchAgents/com.yourname.gold_rush.plist</div>
+        </div>
+
+        <div class="alert alert-warning">
+            <h4 style="margin-top: 0;">Problem: Email went to spam</h4>
+            <ol>
+                <li>Go to Gmail spam folder</li>
+                <li>Find the Gold Rush email</li>
+                <li>Click "Not Spam"</li>
+                <li>Create a filter: From <span class="inline-code">your.email@gmail.com</span> → Never send to spam</li>
+            </ol>
+        </div>
+
+        <div class="alert alert-warning">
+            <h4 style="margin-top: 0;">Problem: API rate limit exceeded</h4>
+            <p><strong>Symptom:</strong> Error log says "429 Too Many Requests"</p>
+            <p><strong>Fix:</strong> Edit <span class="inline-code">config.env</span>, change:</p>
+            <div class="code-block">MAX_JSEARCH_CALLS_PER_DAY=4  # Reduce from 6 to 4</div>
+            <p>Then reload:</p>
+            <div class="code-block">launchctl unload ~/Library/LaunchAgents/com.yourname.gold_rush.plist
+launchctl load ~/Library/LaunchAgents/com.yourname.gold_rush.plist</div>
+        </div>
+
+        <div class="alert alert-warning">
+            <h4 style="margin-top: 0;">Problem: All jobs scored low (&lt;60)</h4>
+            <p><strong>Likely cause:</strong> Search terms too narrow, or slow job market</p>
+            <p><strong>Fix:</strong> Expand <span class="inline-code">TARGET_TITLES</span> in <span class="inline-code">config.env</span></p>
+            <p>Example: Add "Product Analyst", "Analytics Manager", "Product Operations Manager"</p>
+        </div>
+
+        <div class="alert alert-info">
+            <h4 style="margin-top: 0;">Want to run manually?</h4>
+            <div class="code-block">cd "$HOME/Job Searching"
+python3 gold_rush.py</div>
+        </div>
+
+        <div class="alert alert-info">
+            <h4 style="margin-top: 0;">Want to stop the scheduler?</h4>
+            <div class="code-block">launchctl unload ~/Library/LaunchAgents/com.yourname.gold_rush.plist</div>
+            <p>To restart:</p>
+            <div class="code-block">launchctl load ~/Library/LaunchAgents/com.yourname.gold_rush.plist</div>
+        </div>
+
+        <h3>Common Error Messages</h3>
+        <table>
+            <tr>
+                <th>Error</th>
+                <th>Solution</th>
+            </tr>
+            <tr>
+                <td>Authentication failed (Gmail)</td>
+                <td>Regenerate app password in Step 2, update <span class="inline-code">config.env</span></td>
+            </tr>
+            <tr>
+                <td>API key invalid</td>
+                <td>Check JSearch API key in <span class="inline-code">config.env</span>, verify it's correct from Job Tracking Dashboard</td>
+            </tr>
+            <tr>
+                <td>Module not found</td>
+                <td>Re-run <span class="inline-code">pip3 install requests beautifulsoup4 python-dotenv</span></td>
+            </tr>
+            <tr>
+                <td>Permission denied</td>
+                <td>Make script executable: <span class="inline-code">chmod +x gold_rush.py</span></td>
+            </tr>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>Final Checklist</h2>
+
+        <p>Before you close this guide, verify:</p>
+
+        <ul class="checklist">
+            <li>Python dependencies installed (<span class="inline-code">pip3 install</span> completed)</li>
+            <li>Gmail app password generated and saved in <span class="inline-code">config.env</span></li>
+            <li>JSearch API key copied from Job Tracking Dashboard to <span class="inline-code">config.env</span></li>
+            <li>Job alerts set up on LinkedIn (4 alerts)</li>
+            <li>Job alerts set up on Indeed (3 alerts)</li>
+            <li>Script tested manually and received test email</li>
+            <li>Scheduler installed (<span class="inline-code">launchctl load</span> completed)</li>
+            <li>Scheduler verified running (<span class="inline-code">launchctl list | grep gold_rush</span> shows output)</li>
+        </ul>
+
+        <div class="alert alert-success">
+            <h3 style="margin-top: 0;">You're All Set! 🎉</h3>
+            <p>Gold Rush is now running automatically. Tomorrow morning at 7:00 AM, you'll receive your first automated email with 5-10 golden jobs.</p>
+            <p><strong>Your competitive edge is active.</strong></p>
+            <p>Go get those interviews. You deserve better than 5 days off a year.</p>
+        </div>
+
+        <div class="footer">
+            <p><strong>Gold Rush v1.0</strong></p>
+            <p>Setup Guide | February 2026</p>
+            <p>Built for Your Name</p>
+            <p style="margin-top: 15px; color: #999; font-size: 0.9em;">
+                Logs: <span class="inline-code">~/Job Searching/logs/</span><br>
+                Database: <span class="inline-code">~/Job Searching/gold_rush.db</span><br>
+                Config: <span class="inline-code">~/Job Searching/config.env</span>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gold Rush — Daily Cheat Sheet</title>
+  <style>
+    @media print {
+      body { padding: 0; }
+      .no-print { display: none; }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #1a1a1a;
+      padding: 1.5rem;
+      max-width: 8.5in;
+      margin: 0 auto;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 3px solid #111;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .header h1 { font-size: 22px; letter-spacing: -0.5px; }
+    .header .url { font-size: 12px; color: #666; }
+
+    /* Two-column layout */
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .full-width { grid-column: 1 / -1; }
+
+    /* Section styling */
+    .section { margin-bottom: 1rem; }
+    .section h2 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: #111;
+      color: #fff;
+      padding: 3px 8px;
+      margin-bottom: 0.5rem;
+    }
+    .section h3 {
+      font-size: 11px;
+      font-weight: 700;
+      margin: 0.6rem 0 0.2rem;
+    }
+    .section p { margin-bottom: 0.4rem; }
+    .section ul, .section ol {
+      padding-left: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+    .section li { margin-bottom: 0.2rem; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.4rem 0;
+      font-size: 10px;
+    }
+    th {
+      text-align: left;
+      background: #f0f0f0;
+      padding: 3px 6px;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      border-bottom: 1px solid #ccc;
+    }
+    td {
+      padding: 3px 6px;
+      border-bottom: 1px solid #eee;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 9px;
+      font-weight: 700;
+    }
+    .badge-gold { background: #FFD700; color: #333; }
+    .badge-silver { background: #C0C0C0; color: #333; }
+    .badge-bronze { background: #CD7F32; color: #fff; }
+    .badge-green { background: #d4edda; color: #155724; }
+    .badge-yellow { background: #fff3cd; color: #856404; }
+    .badge-red { background: #f8d7da; color: #721c24; }
+
+    /* Callout box */
+    .callout {
+      border: 2px solid #111;
+      padding: 0.5rem 0.7rem;
+      margin: 0.5rem 0;
+      background: #fafafa;
+    }
+    .callout-title {
+      font-weight: 700;
+      font-size: 11px;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Checklist */
+    .checklist li {
+      list-style: none;
+      position: relative;
+      padding-left: 1rem;
+    }
+    .checklist li::before {
+      content: "☐";
+      position: absolute;
+      left: 0;
+    }
+
+    .print-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .print-btn:hover { background: #333; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>GOLD RUSH — Daily Cheat Sheet</h1>
+    <span class="url">jobhunt.daitiq.com &middot; pw: goldrush</span>
+  </div>
+
+  <div class="columns">
+
+    <!-- LEFT COLUMN -->
+    <div>
+
+      <div class="section">
+        <h2>What This Is</h2>
+        <p>Gold Rush is an automated job hunting system that runs <strong>twice a day</strong> (8am + 7pm). It pulls jobs from 3 sources, scores them 0–100, and ranks them into tiers. You see the results on a private dashboard — no more digging through email alerts or scrolling LinkedIn.</p>
+        <table>
+          <tr><th>Source</th><th>What It Pulls</th></tr>
+          <tr><td>JSearch API</td><td>Fresh postings from job boards (Indeed, ZipRecruiter, etc.)</td></tr>
+          <tr><td>LinkedIn Alerts</td><td>Your email job alerts, parsed automatically</td></tr>
+          <tr><td>Hacker News</td><td>Monthly "Who's Hiring" threads, filtered to your roles</td></tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>Job Tiers</h2>
+        <table>
+          <tr><th>Tier</th><th>Score</th><th>Action</th></tr>
+          <tr>
+            <td><span class="badge badge-gold">GOLD</span></td>
+            <td>70–84</td>
+            <td><strong>Apply immediately.</strong> Strong match on title, salary, freshness.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-silver">SILVER</span></td>
+            <td>50–69</td>
+            <td>Apply if interesting. Partial match — maybe off on location or pay.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-bronze">BRONZE</span></td>
+            <td>&lt;50</td>
+            <td>Skip. Weak match. Only look if nothing else is available.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>How Scoring Works</h2>
+        <table>
+          <tr><th>Factor</th><th>Pts</th><th>Top Score Criteria</th></tr>
+          <tr><td>Title match</td><td>/35</td><td>"Business Data Analyst" exact match</td></tr>
+          <tr><td>Salary</td><td>/25</td><td>$180k+ = max, $100k+ = 14pts</td></tr>
+          <tr><td>Freshness</td><td>/15</td><td>Posted &lt;6 hours ago</td></tr>
+          <tr><td>Company</td><td>/10</td><td>Preferred company (Stripe, etc.)</td></tr>
+          <tr><td>Location</td><td>/10</td><td>Remote or Bay Area</td></tr>
+          <tr><td>Seniority</td><td>/5</td><td>Senior/Lead/Staff level</td></tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>Dashboard Controls</h2>
+        <table>
+          <tr><th>Control</th><th>What It Does</th></tr>
+          <tr><td>Tier buttons</td><td>Filter to Gold / Silver / Bronze only</td></tr>
+          <tr><td>Source buttons</td><td>Filter by JSearch / LinkedIn / HN</td></tr>
+          <tr><td>today / 7d / 30d / all</td><td>Date range filter</td></tr>
+          <tr><td>Search box</td><td>Search title, company, location, salary</td></tr>
+          <tr><td>Sort dropdown</td><td>Score (default), Date, Company</td></tr>
+          <tr><td>Hide applied</td><td>Hides jobs you already applied to</td></tr>
+          <tr><td>✕ button</td><td>Dismiss a job (with reason)</td></tr>
+          <tr><td>Applied: N →</td><td>Opens Application Tracker</td></tr>
+          <tr><td>Dismissed: N →</td><td>Opens Dismissed Jobs page</td></tr>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div>
+
+      <div class="section">
+        <h2>Daily Routine</h2>
+
+        <h3>Morning Check (after 8am)</h3>
+        <ul class="checklist">
+          <li>Open <strong>jobhunt.daitiq.com</strong></li>
+          <li>Filter to <span class="badge badge-gold">GOLD</span> tier</li>
+          <li>Open each Gold job, read it, apply if it fits</li>
+          <li>Check the applied box after submitting</li>
+          <li>✕ dismiss anything fake, irrelevant, or expired</li>
+          <li>Scan <span class="badge badge-silver">SILVER</span> for standout companies</li>
+        </ul>
+
+        <h3>Evening Check (after 7pm)</h3>
+        <ul class="checklist">
+          <li>Set date filter to <strong>"today"</strong></li>
+          <li>Review any new Gold/Silver jobs from the afternoon</li>
+          <li>Apply + check boxes as needed</li>
+        </ul>
+
+        <h3>Weekly Cleanup (Fridays)</h3>
+        <ul class="checklist">
+          <li>Open the <strong>Tracker</strong> (click "Applied: N →")</li>
+          <li>Review stale jobs (yellow, 14d+) — follow up or let go</li>
+          <li>Archive cold jobs (red, 21d+) — click "Archive all cold"</li>
+          <li>Check Dismissed page to see patterns (too many fakes? wrong sources?)</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Application Aging</h2>
+        <p>Your tracked applications automatically change color over time:</p>
+        <table>
+          <tr><th>Status</th><th>Days</th><th>What to Do</th></tr>
+          <tr>
+            <td><span class="badge badge-green">ACTIVE</span></td>
+            <td>0–13</td>
+            <td>Sit tight. Normal response window.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-yellow">STALE</span></td>
+            <td>14–20</td>
+            <td>Probably ghosted. Send a follow-up or move on.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">COLD</span></td>
+            <td>21+</td>
+            <td>Dead. Archive it to keep your tracker clean.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">The Goal</div>
+        <p>Apply to <strong>every Gold job</strong> that's a real match. Aim for <strong>2–5 applications per day</strong>. By the end of each week, you should have <strong>10–20+ fresh applications</strong> out, with stale ones cleared and your tracker reflecting only live opportunities.</p>
+      </div>
+
+      <div class="section">
+        <h2>Dismiss Reasons</h2>
+        <table>
+          <tr><th>Reason</th><th>When to Use</th></tr>
+          <tr><td>No longer available</td><td>Listing taken down or filled</td></tr>
+          <tr><td>Fake job</td><td>Scam, fake company, recruiter bait</td></tr>
+          <tr><td>Not relevant</td><td>Wrong role / industry / bad match</td></tr>
+          <tr><td>Just didn't like</td><td>Something about it turned you off</td></tr>
+          <tr><td>No response</td><td>Auto-set when archiving cold apps</td></tr>
+          <tr><td>Other</td><td>Custom reason (type your own note)</td></tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>Important Notes</h2>
+        <ul>
+          <li>Applied / dismissed data is stored in your <strong>browser</strong> — use the same device + browser every time</li>
+          <li>Job data updates automatically — no action needed from you</li>
+          <li>On mobile, tap the <strong>job title</strong> to open the listing</li>
+          <li>Full guide: <strong>jobhunt.daitiq.com/guide.html</strong></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+  <button class="print-btn no-print" onclick="window.print()">Print This Page</button>
+
+</body>
+</html>

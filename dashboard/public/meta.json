@@ -1,0 +1,19 @@
+{
+  "last_run": "2026-04-15T07:00:00.000000",
+  "total_jobs": 20,
+  "new_jobs_this_run": 4,
+  "tier_counts": {
+    "platinum": 2,
+    "gold": 5,
+    "silver": 9,
+    "bronze": 4
+  },
+  "source_counts": {
+    "linkedin_email": 9,
+    "jsearch_api": 8,
+    "hacker_news": 3
+  },
+  "export_time": "2026-04-15T07:00:00.000000",
+  "demo": true,
+  "demo_note": "This is synthetic sample data. The project is archived and no longer running live."
+}

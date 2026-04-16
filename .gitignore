@@ -1,0 +1,31 @@
+# Secrets + runtime config
+config.env
+.env
+.env.local
+*.local
+
+# Data files (personal job data never belongs in git)
+*.db
+*.db-journal
+*.csv
+outputs/
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Dashboard (Node)
+dashboard/node_modules/
+dashboard/dist/
+dashboard/.vercel/
+
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/

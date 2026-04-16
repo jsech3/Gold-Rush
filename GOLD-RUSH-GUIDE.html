@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Rush - Project Reference Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6; color: #333; background: #f5f5f5; padding: 20px;
+        }
+        .container {
+            max-width: 900px; margin: 0 auto; background: white;
+            padding: 50px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center; margin-bottom: 35px; padding-bottom: 25px;
+            border-bottom: 4px solid #007bff;
+        }
+        .header h1 { font-size: 2.4em; color: #1a1a1a; margin-bottom: 8px; }
+        .header .subtitle { font-size: 1.1em; color: #666; }
+        .header .version { font-size: 0.95em; color: #999; margin-top: 10px; }
+
+        .meta-info {
+            background: #f8f9fa; padding: 18px; border-radius: 8px;
+            margin-bottom: 35px; border-left: 5px solid #28a745;
+        }
+        .meta-info p { margin: 6px 0; }
+
+        h2 {
+            color: #007bff; font-size: 1.6em; margin-top: 40px; margin-bottom: 15px;
+            padding-bottom: 8px; border-bottom: 2px solid #e0e0e0;
+            page-break-after: avoid;
+        }
+        h3 {
+            color: #333; font-size: 1.25em; margin-top: 25px; margin-bottom: 10px;
+            page-break-after: avoid;
+        }
+        p { margin: 12px 0; }
+
+        .alert {
+            padding: 16px; margin: 20px 0; border-radius: 8px;
+            border-left: 5px solid; page-break-inside: avoid;
+        }
+        .alert-info { background: #d1ecf1; border-color: #17a2b8; color: #0c5460; }
+        .alert-warning { background: #fff3cd; border-color: #ffc107; color: #856404; }
+        .alert-success { background: #d4edda; border-color: #28a745; color: #155724; }
+
+        .code-block {
+            background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 8px;
+            overflow-x: auto; margin: 15px 0;
+            font-family: 'Monaco', 'Courier New', monospace; font-size: 0.88em;
+            line-height: 1.5; page-break-inside: avoid;
+        }
+        .inline-code {
+            background: #f4f4f4; padding: 2px 6px; border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace; font-size: 0.88em; color: #c7254e;
+        }
+
+        ul, ol { margin: 12px 0 12px 25px; }
+        li { margin: 6px 0; line-height: 1.7; }
+
+        table {
+            width: 100%; border-collapse: collapse; margin: 15px 0;
+            page-break-inside: avoid; font-size: 0.95em;
+        }
+        th, td { padding: 10px; text-align: left; border: 1px solid #ddd; }
+        th { background: #007bff; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f8f9fa; }
+
+        .page-break { page-break-before: always; }
+        .footer {
+            margin-top: 50px; padding-top: 25px; border-top: 2px solid #e0e0e0;
+            text-align: center; color: #666; font-size: 0.9em;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; padding: 20px; max-width: 100%; }
+            .alert, .code-block, table { page-break-inside: avoid; }
+            h2, h3 { page-break-after: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>Gold Rush</h1>
+        <p class="subtitle">Automated Job Finder &mdash; Project Reference Guide</p>
+        <p class="version">v2.0 &middot; Updated February 22, 2026 &middot; Your Name</p>
+    </div>
+
+    <div class="meta-info">
+        <p><strong>Location:</strong> <span class="inline-code">$HOME/GoldRush/</span></p>
+        <p><strong>Schedule:</strong> Runs automatically at 8:00 AM and 7:00 PM daily</p>
+        <p><strong>Digest sent to:</strong> your-email@example.com</p>
+        <p><strong>Database:</strong> <span class="inline-code">gold_rush.db</span> (SQLite &mdash; all jobs ever found)</p>
+    </div>
+
+    <!-- ============================================================ -->
+    <h2>1. What Gold Rush Does</h2>
+
+    <p>Gold Rush runs twice a day, pulls jobs from three sources, scores them, and emails you a ranked digest. Every job is stored in a local database whether it makes the email or not.</p>
+
+    <h3>Daily Flow</h3>
+    <table>
+        <tr><th>Time</th><th>What Happens</th></tr>
+        <tr><td>7:30 AM</td><td><span class="inline-code">tpm_job_hunter.py</span> scrapes Hacker News "Who's Hiring" &rarr; CSV</td></tr>
+        <tr><td>8:00 AM</td><td><span class="inline-code">gold_rush.py</span> reads all 3 sources &rarr; scores &rarr; emails digest</td></tr>
+        <tr><td>7:00 PM</td><td><span class="inline-code">gold_rush.py</span> runs again to catch afternoon postings</td></tr>
+    </table>
+
+    <!-- ============================================================ -->
+    <h2>2. Three Job Sources</h2>
+
+    <table>
+        <tr><th>Source</th><th>How It Works</th><th>Label in Email</th></tr>
+        <tr>
+            <td><strong>LinkedIn / Indeed / Glassdoor Alerts</strong></td>
+            <td>Logs into Gmail via IMAP, reads job alert emails from the last 24 hours, parses title, company, location, and salary from the HTML</td>
+            <td>LinkedIn Alert / Indeed Alert / Glassdoor Alert</td>
+        </tr>
+        <tr>
+            <td><strong>JSearch API</strong></td>
+            <td>3 API calls per run to jsearch.p.rapidapi.com. Searches your target titles &times; locations. Free tier: 200 requests/month (~6/day = ~180/month)</td>
+            <td>Online (JSearch)</td>
+        </tr>
+        <tr>
+            <td><strong>Hacker News</strong></td>
+            <td>Reads CSV produced by <span class="inline-code">tpm_job_hunter.py</span>. Filters to analyst roles, US-only, skips engineers/designers/interns</td>
+            <td>Hacker News</td>
+        </tr>
+    </table>
+
+    <div class="alert alert-info">
+        <strong>Each job in the email shows its source</strong> (e.g., "Found via: LinkedIn Alert") so you always know where it came from.
+    </div>
+
+    <!-- ============================================================ -->
+    <h2>3. Scoring System (0&ndash;100)</h2>
+
+    <p>Each job is scored on six factors. The score determines its tier and where it appears in the email.</p>
+
+    <table>
+        <tr><th>Factor</th><th>Max Points</th><th>Logic</th></tr>
+        <tr>
+            <td><strong>Title match</strong></td><td>35</td>
+            <td>Business Data Analyst = 35, BI Analyst = 33, Business Analyst = 32, Data Analyst = 30, Operations Analyst = 29. Partial match ("analyst" + "data") = 24</td>
+        </tr>
+        <tr>
+            <td><strong>Salary</strong></td><td>25</td>
+            <td>$180K+ = 25, $150K+ = 22, $120K+ = 18, $100K+ = 14, $80K+ = 8, lower = 4, <em>unknown = 5</em></td>
+        </tr>
+        <tr>
+            <td><strong>Freshness</strong></td><td>15</td>
+            <td>&lt;6hrs = 15, &lt;12hrs = 12, &lt;24hrs = 9, &lt;48hrs = 5, older = 2</td>
+        </tr>
+        <tr>
+            <td><strong>Company quality</strong></td><td>10</td>
+            <td>Preferred list (Stripe, Anthropic, etc.) = 10, known tech (60+ companies) = 7, unknown = 3</td>
+        </tr>
+        <tr>
+            <td><strong>Location match</strong></td><td>10</td>
+            <td>Remote or SF = 10, South Bay = 8, California = 6, other US = 3, unknown = 4</td>
+        </tr>
+        <tr>
+            <td><strong>Seniority fit</strong></td><td>5</td>
+            <td>Senior/Lead = 5, Mid-level = 4, Staff/Director = 3, Intern/Junior = 1</td>
+        </tr>
+    </table>
+
+    <h3>Tiers</h3>
+    <table>
+        <tr><th>Tier</th><th>Score</th><th>In Email?</th></tr>
+        <tr><td>Platinum</td><td>85&ndash;100</td><td>Yes &mdash; top of digest, highlighted</td></tr>
+        <tr><td>Gold</td><td>70&ndash;84</td><td>Yes &mdash; featured section</td></tr>
+        <tr><td>Silver</td><td>50&ndash;69</td><td>Yes &mdash; listed</td></tr>
+        <tr><td>Bronze</td><td>&lt;50</td><td>No &mdash; stored in DB only</td></tr>
+    </table>
+
+    <div class="alert alert-info">
+        <strong>Safety net:</strong> Score floor is 30 &mdash; a title match alone guarantees a job won't be invisible. Silver threshold is 50, so borderline jobs still make the email.
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ============================================================ -->
+    <h2>4. Email Digest</h2>
+
+    <p>Each job card in the email shows:</p>
+    <ul>
+        <li>Job title and company</li>
+        <li>Location</li>
+        <li>Salary (if available, or "Salary not listed")</li>
+        <li>Score out of 100</li>
+        <li>Source label (LinkedIn Alert, Online, Hacker News, etc.)</li>
+        <li><strong>Apply Now</strong> button &mdash; links to the job listing</li>
+        <li><strong>I Applied</strong> button (green) &mdash; for tracking applications</li>
+    </ul>
+
+    <h3>"I Applied" Tracking</h3>
+    <ol>
+        <li>You apply to a job normally</li>
+        <li>Tap the green <strong>"I Applied"</strong> button in the email</li>
+        <li>It opens a pre-filled email draft (subject: <span class="inline-code">APPLIED:#47 - Data Analyst at Stripe</span>)</li>
+        <li>Hit <strong>Send</strong></li>
+        <li>Next time Gold Rush runs, it scans your inbox for <span class="inline-code">APPLIED:</span> emails, marks them in the database, and removes them from future digests</li>
+    </ol>
+
+    <div class="alert alert-info">
+        <strong>One tap + Send.</strong> No SQL, no command line. Jobs you've applied to automatically stop appearing.
+    </div>
+
+    <!-- ============================================================ -->
+    <h2>5. Your Daily & Weekly Workflow</h2>
+
+    <h3>Morning Routine (10&ndash;15 min)</h3>
+    <table>
+        <tr><th>Step</th><th>What to Do</th><th>Time</th></tr>
+        <tr>
+            <td>1</td>
+            <td><strong>Check your inbox</strong> for the Gold Rush digest (arrives ~8:00 AM)</td>
+            <td>1 min</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><strong>Scan Gold-tier jobs first</strong> &mdash; these are your best matches (right title, good salary, strong company). Open any that interest you.</td>
+            <td>2 min</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><strong>Apply to your top 2&ndash;3 picks.</strong> Focus on Gold-tier and high Silver-tier. Don't agonize &mdash; speed matters more than perfection for early applications.</td>
+            <td>8&ndash;10 min</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><strong>Tap "I Applied"</strong> on each job you applied to. Hit Send on the draft. This removes them from future digests.</td>
+            <td>30 sec</td>
+        </tr>
+    </table>
+
+    <h3>Evening Check (2&ndash;5 min)</h3>
+    <table>
+        <tr><th>Step</th><th>What to Do</th><th>Time</th></tr>
+        <tr>
+            <td>1</td>
+            <td><strong>Check the 7 PM digest</strong> &mdash; catches jobs posted during the day</td>
+            <td>1 min</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><strong>Apply to 1&ndash;2 more</strong> if anything stands out. Don't force it if nothing's great.</td>
+            <td>2&ndash;4 min</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><strong>Tap "I Applied"</strong> for any you applied to</td>
+            <td>15 sec</td>
+        </tr>
+    </table>
+
+    <div class="alert alert-info">
+        <strong>Daily target:</strong> 3&ndash;5 quality applications per day. That's 15&ndash;25 per week, 60&ndash;100 per month. Consistency beats volume.
+    </div>
+
+    <h3>Weekly Review (15 min, pick any day)</h3>
+    <table>
+        <tr><th>Step</th><th>What to Do</th><th>Why</th></tr>
+        <tr>
+            <td>1</td>
+            <td><strong>Check your applied count:</strong><br>
+                <span class="inline-code">sqlite3 $HOME/GoldRush/gold_rush.db "SELECT COUNT(*) FROM jobs WHERE applied = 1;"</span></td>
+            <td>Track your pace. Are you hitting 15&ndash;25/week?</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><strong>Spot-check scoring:</strong> Were Gold-tier jobs actually good? Were good jobs landing in Bronze?</td>
+            <td>If scoring feels off, adjust <span class="inline-code">TARGET_TITLES</span> or <span class="inline-code">PREFERRED_COMPANIES</span> in config.env</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><strong>Check system health:</strong><br>
+                <span class="inline-code">launchctl list | grep gold_rush</span><br>
+                <span class="inline-code">tail -5 $HOME/GoldRush/logs/launchd.err.log</span></td>
+            <td>Make sure both daily runs are firing. Exit code should be 0.</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><strong>Review companies you're seeing.</strong> Add any new dream companies to <span class="inline-code">PREFERRED_COMPANIES</span>. Add any junk companies to <span class="inline-code">AVOID_COMPANIES</span>.</td>
+            <td>Keeps the scoring tuned to your preferences over time</td>
+        </tr>
+    </table>
+
+    <h3>What NOT to Do</h3>
+    <ul>
+        <li><strong>Don't apply to everything.</strong> Bronze-tier jobs aren't in the email for a reason. Focus on Silver+ unless you're casting a very wide net.</li>
+        <li><strong>Don't skip "I Applied."</strong> If you don't mark jobs, they'll keep showing up and clutter future digests.</li>
+        <li><strong>Don't manually search LinkedIn/Indeed on top of this.</strong> Gold Rush already reads those alerts. You'd just be duplicating effort.</li>
+        <li><strong>Don't ignore the evening digest.</strong> Afternoon postings are less competitive &mdash; fewer people applying at 7 PM.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- ============================================================ -->
+    <h2>6. Database</h2>
+
+    <p><strong>File:</strong> <span class="inline-code">$HOME/GoldRush/gold_rush.db</span> (SQLite)</p>
+    <p>Every job ever found is stored here, regardless of tier. Key columns:</p>
+
+    <table>
+        <tr><th>Column</th><th>Description</th></tr>
+        <tr><td>id</td><td>Auto-increment ID (used in "I Applied" links)</td></tr>
+        <tr><td>title, company, location</td><td>Parsed job details</td></tr>
+        <tr><td>salary_min / salary_max</td><td>Parsed salary range (null if not listed)</td></tr>
+        <tr><td>source</td><td>linkedin_email, indeed_email, glassdoor_email, jsearch_api, hacker_news</td></tr>
+        <tr><td>goldness_score / tier</td><td>0&ndash;100 score and platinum/gold/silver/bronze</td></tr>
+        <tr><td>found_date</td><td>When Gold Rush stored it</td></tr>
+        <tr><td>emailed</td><td>Whether it was included in a digest</td></tr>
+        <tr><td>applied</td><td>Whether you marked it via "I Applied"</td></tr>
+    </table>
+
+    <h3>Useful Queries</h3>
+    <div class="code-block">cd $HOME/GoldRush
+
+# All Gold+ jobs you haven't applied to
+sqlite3 gold_rush.db "SELECT title, company, goldness_score
+FROM jobs WHERE tier IN ('gold','platinum') AND applied = 0
+ORDER BY goldness_score DESC;"
+
+# Jobs found today
+sqlite3 gold_rush.db "SELECT title, company, source, tier, goldness_score
+FROM jobs WHERE DATE(found_date) = DATE('now')
+ORDER BY goldness_score DESC;"
+
+# Source breakdown
+sqlite3 gold_rush.db "SELECT source, COUNT(*), ROUND(AVG(goldness_score),1)
+FROM jobs GROUP BY source;"
+
+# Jobs per day
+sqlite3 gold_rush.db "SELECT DATE(found_date), COUNT(*)
+FROM jobs GROUP BY DATE(found_date) ORDER BY DATE(found_date);"
+
+# Applied jobs
+sqlite3 gold_rush.db "SELECT title, company, found_date
+FROM jobs WHERE applied = 1 ORDER BY found_date DESC;"</div>
+
+    <div class="page-break"></div>
+
+    <!-- ============================================================ -->
+    <h2>7. Configuration</h2>
+
+    <p><strong>File:</strong> <span class="inline-code">$HOME/GoldRush/config.env</span></p>
+
+    <table>
+        <tr><th>Variable</th><th>What It Controls</th></tr>
+        <tr><td>EMAIL_ADDRESS</td><td>Gmail address (send/receive)</td></tr>
+        <tr><td>EMAIL_APP_PASSWORD</td><td>Gmail App Password (not your real password)</td></tr>
+        <tr><td>JSEARCH_API_KEY</td><td>RapidAPI key for JSearch</td></tr>
+        <tr><td>TARGET_TITLES</td><td>Comma-separated job titles for API searches</td></tr>
+        <tr><td>TARGET_LOCATIONS</td><td>Comma-separated locations for API searches</td></tr>
+        <tr><td>MIN_SALARY</td><td>Salary floor for scoring</td></tr>
+        <tr><td>PREFERRED_SALARY</td><td>Target salary</td></tr>
+        <tr><td>MAX_JSEARCH_CALLS_PER_DAY</td><td>API call limit (free tier: 200/month)</td></tr>
+        <tr><td>PREFERRED_COMPANIES</td><td>Companies that get max quality score (10 pts)</td></tr>
+        <tr><td>AVOID_COMPANIES</td><td>Companies to skip</td></tr>
+    </table>
+
+    <div class="alert alert-warning">
+        <strong>To change job titles or companies:</strong> Edit <span class="inline-code">config.env</span>, save, done. Changes take effect on the next scheduled run. No need to restart anything.
+    </div>
+
+    <!-- ============================================================ -->
+    <h2>8. File Structure</h2>
+
+    <div class="code-block">$HOME/GoldRush/
+&#9500;&#9472;&#9472; gold_rush.py              # Main script
+&#9500;&#9472;&#9472; config.env                # Credentials and preferences
+&#9500;&#9472;&#9472; gold_rush.db              # SQLite database (all jobs ever found)
+&#9500;&#9472;&#9472; logs/
+&#9474;   &#9500;&#9472;&#9472; gold_rush.log         # Run log (check this first)
+&#9474;   &#9500;&#9472;&#9472; launchd.out.log       # Scheduler stdout
+&#9474;   &#9492;&#9472;&#9472; launchd.err.log       # Scheduler stderr (check if runs fail)
+&#9500;&#9472;&#9472; GOLD-RUSH-GUIDE.html      # This file
+&#9492;&#9472;&#9472; GOLD-RUSH-README.md       # Markdown reference
+
+~/Library/LaunchAgents/
+&#9492;&#9472;&#9472; com.yourname.gold_rush.plist   # macOS scheduler (8am + 7pm)
+
+$HOME/2026Projects/Job Searching/
+&#9500;&#9472;&#9472; tpm_job_hunter.py         # HN scraper (runs at 7:30am)
+&#9492;&#9472;&#9472; outputs/                  # Daily HN CSVs</div>
+
+    <!-- ============================================================ -->
+    <h2>9. Scheduler Details</h2>
+
+    <p>Gold Rush uses macOS <strong>launchd</strong> to run automatically. The plist lives at:</p>
+    <p><span class="inline-code">~/Library/LaunchAgents/com.yourname.gold_rush.plist</span></p>
+
+    <table>
+        <tr><th>Setting</th><th>Value</th></tr>
+        <tr><td>Python</td><td><span class="inline-code">/opt/homebrew/opt/python@3.13/bin/python3.13</span></td></tr>
+        <tr><td>Script</td><td><span class="inline-code">$HOME/GoldRush/gold_rush.py</span></td></tr>
+        <tr><td>Schedule</td><td>8:00 AM and 7:00 PM daily</td></tr>
+        <tr><td>Logs</td><td><span class="inline-code">$HOME/GoldRush/logs/</span></td></tr>
+    </table>
+
+    <div class="alert alert-warning">
+        <strong>Important:</strong> The project was moved from <span class="inline-code">Desktop/...</span> to <span class="inline-code">$HOME/GoldRush/</span> to avoid macOS Desktop permission restrictions. The plist must point to the Homebrew Python (not <span class="inline-code">/usr/bin/python3</span>) because the system Python doesn't have the required packages.
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ============================================================ -->
+    <h2>10. Common Commands</h2>
+
+    <h3>Run Manually</h3>
+    <div class="code-block">cd $HOME/GoldRush
+python3 gold_rush.py</div>
+
+    <h3>Check Recent Logs</h3>
+    <div class="code-block">tail -30 $HOME/GoldRush/logs/gold_rush.log</div>
+
+    <h3>Check If Scheduler Is Running</h3>
+    <div class="code-block">launchctl list | grep gold_rush
+# Exit code 0 = healthy. Exit code 2 = error.</div>
+
+    <h3>Check Scheduler Errors</h3>
+    <div class="code-block">tail -10 $HOME/GoldRush/logs/launchd.err.log</div>
+
+    <h3>Stop the Scheduler</h3>
+    <div class="code-block">launchctl unload ~/Library/LaunchAgents/com.yourname.gold_rush.plist</div>
+
+    <h3>Restart the Scheduler</h3>
+    <div class="code-block">launchctl unload ~/Library/LaunchAgents/com.yourname.gold_rush.plist
+launchctl load ~/Library/LaunchAgents/com.yourname.gold_rush.plist</div>
+
+    <h3>Force a Run via Scheduler (Test)</h3>
+    <div class="code-block">launchctl kickstart gui/$(id -u)/com.yourname.gold_rush</div>
+
+    <!-- ============================================================ -->
+    <h2>11. Troubleshooting</h2>
+
+    <table>
+        <tr><th>Problem</th><th>Check</th><th>Fix</th></tr>
+        <tr>
+            <td>No email received</td>
+            <td><span class="inline-code">tail -30 logs/gold_rush.log</span></td>
+            <td>If no recent entry, scheduler isn't running. Run <span class="inline-code">launchctl list | grep gold_rush</span>. If missing, reload the plist.</td>
+        </tr>
+        <tr>
+            <td>Scheduler shows exit code 2</td>
+            <td><span class="inline-code">tail -10 logs/launchd.err.log</span></td>
+            <td>Usually a Python path or permissions issue. Verify the plist points to <span class="inline-code">/opt/homebrew/opt/python@3.13/bin/python3.13</span></td>
+        </tr>
+        <tr>
+            <td>"Operation not permitted"</td>
+            <td>launchd.err.log</td>
+            <td>Script is in a macOS-protected folder. Must live in <span class="inline-code">$HOME/GoldRush/</span> (not Desktop)</td>
+        </tr>
+        <tr>
+            <td>"No module named requests"</td>
+            <td>launchd.err.log</td>
+            <td>Plist is using wrong Python. Must use Homebrew Python, not <span class="inline-code">/usr/bin/python3</span></td>
+        </tr>
+        <tr>
+            <td>JSearch API timeout</td>
+            <td>gold_rush.log shows timeout errors</td>
+            <td>Intermittent &mdash; the API is flaky. Will retry next run. Not a problem unless it happens every time.</td>
+        </tr>
+        <tr>
+            <td>Email went to spam</td>
+            <td>Check Gmail spam folder</td>
+            <td>Mark "Not Spam". Create filter: From your-email@example.com &rarr; Never send to spam</td>
+        </tr>
+        <tr>
+            <td>All jobs score the same</td>
+            <td>Check if salary/location are empty in DB</td>
+            <td>Parser issue. Run <span class="inline-code">sqlite3 gold_rush.db "SELECT title, company, location, salary_min FROM jobs ORDER BY id DESC LIMIT 10;"</span></td>
+        </tr>
+        <tr>
+            <td>"I Applied" not working</td>
+            <td>Check if APPLIED: emails are in your inbox</td>
+            <td>Gold Rush scans for them on each run. They must be in your inbox (not drafts). The subject must start with <span class="inline-code">APPLIED:#</span></td>
+        </tr>
+    </table>
+
+    <!-- ============================================================ -->
+    <h2>12. How to Customize</h2>
+
+    <table>
+        <tr><th>Want To...</th><th>Do This</th></tr>
+        <tr>
+            <td>Add/remove job titles</td>
+            <td>Edit <span class="inline-code">TARGET_TITLES</span> in <span class="inline-code">config.env</span></td>
+        </tr>
+        <tr>
+            <td>Add preferred companies</td>
+            <td>Edit <span class="inline-code">PREFERRED_COMPANIES</span> in <span class="inline-code">config.env</span></td>
+        </tr>
+        <tr>
+            <td>Block a company</td>
+            <td>Edit <span class="inline-code">AVOID_COMPANIES</span> in <span class="inline-code">config.env</span></td>
+        </tr>
+        <tr>
+            <td>Change search locations</td>
+            <td>Edit <span class="inline-code">TARGET_LOCATIONS</span> in <span class="inline-code">config.env</span></td>
+        </tr>
+        <tr>
+            <td>Reduce API usage</td>
+            <td>Lower <span class="inline-code">MAX_JSEARCH_CALLS_PER_DAY</span> (currently 3)</td>
+        </tr>
+        <tr>
+            <td>Change run times</td>
+            <td>Edit Hour/Minute in <span class="inline-code">~/Library/LaunchAgents/com.yourname.gold_rush.plist</span>, then reload</td>
+        </tr>
+        <tr>
+            <td>Add more LinkedIn alerts</td>
+            <td>Create alerts on linkedin.com/jobs &mdash; Gold Rush auto-reads any alert email from LinkedIn</td>
+        </tr>
+    </table>
+
+    <div class="alert alert-info">
+        <strong>No restart needed for config.env changes.</strong> The script re-reads config.env on every run, so changes take effect at the next 8am or 7pm run.
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ============================================================ -->
+    <h2>13. Quick Health Check</h2>
+
+    <p>Run these three commands to verify everything is working:</p>
+
+    <div class="code-block"># 1. Is the scheduler loaded?
+launchctl list | grep gold_rush
+# Want: exit code 0
+
+# 2. When did it last run?
+tail -3 $HOME/GoldRush/logs/gold_rush.log
+# Want: recent timestamp + "Gold Rush completed successfully"
+
+# 3. Any errors?
+tail -3 $HOME/GoldRush/logs/launchd.err.log
+# Want: empty or old errors</div>
+
+    <div class="alert alert-success">
+        <strong>If all three look good, Gold Rush is healthy.</strong> If not, check the Troubleshooting section above.
+    </div>
+
+    <!-- ============================================================ -->
+
+    <div class="footer">
+        <p><strong>Gold Rush v2.0</strong></p>
+        <p>Project Reference Guide &middot; February 2026</p>
+        <p>Built for Your Name</p>
+        <p style="margin-top: 12px; color: #999; font-size: 0.85em;">
+            Script: <span class="inline-code">$HOME/GoldRush/gold_rush.py</span><br>
+            Config: <span class="inline-code">$HOME/GoldRush/config.env</span><br>
+            Database: <span class="inline-code">$HOME/GoldRush/gold_rush.db</span><br>
+            Logs: <span class="inline-code">$HOME/GoldRush/logs/</span><br>
+            Scheduler: <span class="inline-code">~/Library/LaunchAgents/com.yourname.gold_rush.plist</span>
+        </p>
+    </div>
+
+</div>
+</body>
+</html>

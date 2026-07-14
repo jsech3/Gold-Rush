@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { PasswordGate, useAuth } from './components/PasswordGate'
 import { Layout } from './components/Layout'
 import { StatsBar } from './components/StatsBar'
 import { FilterBar } from './components/FilterBar'
@@ -85,6 +84,11 @@ function Dashboard() {
 
   return (
     <Layout>
+      {meta?.demo && (
+        <div className="border border-amber-500/40 bg-amber-500/10 rounded-lg px-3 py-2 mb-4 text-xs text-amber-400">
+          Archived project — the listings below are sample data. Job links open a live search for that role.
+        </div>
+      )}
       {meta && <StatsBar meta={meta} appliedCount={appliedCount} dismissedCount={dismissedCount} onTrackerClick={() => setPage('tracker')} onDismissedClick={() => setPage('dismissed')} />}
       <FilterBar
         filters={filters}
@@ -103,11 +107,5 @@ function Dashboard() {
 }
 
 export default function App() {
-  const { authed, login } = useAuth()
-
-  if (!authed) {
-    return <PasswordGate onLogin={login} />
-  }
-
   return <Dashboard />
 }

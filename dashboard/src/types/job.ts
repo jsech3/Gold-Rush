@@ -29,6 +29,8 @@ export interface Meta {
   }
   source_counts: Record<string, number>
   export_time: string
+  demo?: boolean
+  demo_note?: string
 }
 
 export type SortField = 'score' | 'date' | 'company'
